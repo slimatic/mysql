@@ -125,6 +125,10 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 			exit 1
 		fi
 
+		echo "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD' ;" | "${mysql[@]}"
+		echo "SET GLOBAL max_allowed_packet=10737418240 ;" | "${mysql[@]}"
+		echo "SET GLOBAL net_buffer_length=10737418240  ;"  | "${mysql[@]}"
+
 		echo
 		echo 'MySQL init process done. Ready for start up.'
 		echo
